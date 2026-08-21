@@ -1,0 +1,103 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  height: 64px;
+}
+
+/* ── Brand: a shell prompt ───────────────────────────── */
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+  font-family: var(--font-mono);
+  font-size: .95rem;
+  font-weight: 500;
+  color: var(--fg);
+  border: 0;
+  white-space: nowrap;
+}
+.brand:hover { color: var(--fg); border: 0; }
+
+.brand__sigil  { color: var(--ink-600); }
+.brand__path   { color: var(--accent); }
+.brand__cursor {
+  display: inline-block;
+  width: .55ch;
+  height: 1.05em;
+  translate: 0 .12em;
+  background: var(--ink-700);
+  animation: blink 1.15s steps(1, end) infinite;
+}
+@keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+.brand:hover .brand__path { color: var(--accent-dim); }
+
+/* ── Nav ─────────────────────────────────────────────── */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  font-family: var(--font-mono);
+  font-size: .82rem;
+  letter-spacing: .01em;
+}
+
+.site-nav__link {
+  position: relative;
+  color: var(--fg-muted);
+  border: 0;
+  padding-block: .35rem;
+}
+.site-nav__link::before {
+  content: "/";
+  color: var(--fg-faint);
+  transition: color .15s ease;
+}
+.site-nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 1px;
+  background: var(--accent);
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale .18s ease;
+}
+.site-nav__link:hover,
+.site-nav__link[aria-current="page"] { color: var(--fg); border: 0; }
+.site-nav__link:hover::before,
+.site-nav__link[aria-current="page"]::before { color: var(--accent); }
+.site-nav__link:hover::after,
+.site-nav__link[aria-current="page"]::after { scale: 1 1; }
+
+.site-nav__sep {
+  width: 1px;
+  height: 18px;
+  background: var(--border);
+}
+
+.site-nav__icon {
+  display: inline-flex;
+  color: var(--fg-muted);
+  border: 0;
+}
+.site-nav__icon:hover { color: var(--accent); border: 0; }
+.site-nav__icon svg { width: 18px; height: 18px; }
+
+@media (max-width: 640px) {
+  .site-header__inner { height: 58px; gap: 1rem; }
+  .site-nav { gap: 1rem; font-size: .78rem; }
+  .site-nav__sep, .brand__cursor { display: none; }
+}

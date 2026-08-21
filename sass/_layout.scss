@@ -1,0 +1,275 @@
+/* ── Home hero: terminal session ─────────────────────── */
+.hero {
+  padding-block: 2.5rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: .92rem;
+  line-height: 1.7;
+}
+
+.term-line {
+  display: flex;
+  align-items: baseline;
+  gap: .6ch;
+  margin: 0;
+  flex-wrap: wrap;
+}
+.term-line + .term-line,
+.term-output + .term-line { margin-top: 1.5rem; }
+
+.term-prompt { color: var(--fg-faint); white-space: nowrap; }
+.term-cmd { color: var(--fg); }
+/* A command that is also a link (the 404's `cd ~`) needs the underline, since
+   there is no colour here to mark it as one. */
+.term-cmd a { border-bottom-color: var(--ink-400); }
+
+.term-output {
+  margin: .5rem 0 0;
+  color: var(--fg-muted);
+  max-width: var(--measure);
+}
+.term-output p { margin: 0 0 .6em; }
+.term-output p:last-child { margin-bottom: 0; }
+
+/* ── Post list ───────────────────────────────────────── */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--fg-faint);
+  margin: 3.5rem 0 1.5rem;
+}
+
+.post-list { list-style: none; margin: 0; padding: 0; }
+
+.post-item {
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-item__head {
+  display: flex;
+  align-items: baseline;
+  column-gap: .75ch;
+  row-gap: .3rem;
+  flex-wrap: wrap;
+}
+
+/* Only non-default languages carry a marker, so it should read as a flag
+   rather than a label — English rows stay unmarked. */
+.post-item__lang {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--fg-faint);
+  border: 0;
+  flex: none;
+}
+.post-item__lang:hover { color: var(--accent); border: 0; }
+.post-item__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--fg);
+  border: 0;
+}
+.post-item__title:hover { color: var(--accent); border: 0; }
+.post-item__date {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--fg-faint);
+  margin-left: auto;
+}
+.post-item__summary {
+  margin: .4rem 0 0;
+  color: var(--fg-muted);
+  font-size: .95rem;
+  max-width: var(--measure);
+}
+
+.tag-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .6rem; }
+.tag {
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  color: var(--fg-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: .1rem .55rem;
+}
+a.tag:hover { color: var(--ink-950); background: var(--ink-300); border-color: var(--ink-400); }
+
+/* ── Pager ───────────────────────────────────────────── */
+/* No border of its own: the post list already closes with a rule, and a
+   second one right below it would read as the stacked-lines problem again. */
+.pager {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: .8rem;
+}
+
+.pager__link {
+  color: var(--fg-muted);
+  border: 0;
+}
+.pager__link:hover { color: var(--accent); border: 0; }
+
+/* The unavailable direction dims rather than disappearing, so the row keeps
+   the same shape on the first and last page. */
+.pager__link--off { color: var(--ink-400); }
+
+.pager__count {
+  color: var(--fg-faint);
+  letter-spacing: .08em;
+}
+.pager__sep { color: var(--ink-400); margin: 0 .45em; }
+
+/* ── Single post ─────────────────────────────────────── */
+.post { max-width: var(--measure); }
+.post__meta {
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  color: var(--fg-faint);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.post__body img { max-width: 100%; border-radius: var(--radius); }
+
+/* ── Tables ──────────────────────────────────────────── */
+/* Markdown emits a bare <table> with no wrapper element, so the table itself
+   has to be the scroll container. `display: block` keeps the internal table
+   layout intact (rows still lay out as a table) while letting the box scroll
+   instead of forcing the page sideways on a narrow screen. */
+.post__body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.75rem 0;
+  font-size: .92rem;
+  line-height: 1.55;
+}
+
+.post__body th,
+.post__body td {
+  padding: .55rem 1.5rem .55rem 0;
+  text-align: left;
+  vertical-align: top;
+}
+/* Flush both edges so the table lines up with the text column around it */
+.post__body th:last-child,
+.post__body td:last-child { padding-right: 0; }
+
+.post__body th {
+  font-family: var(--font-mono);
+  font-size: .74rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--fg-faint);
+  white-space: nowrap;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Row separators sit on the faintest border token, so a long table adds
+   texture rather than a stack of hard rules. */
+.post__body tbody tr + tr td { border-top: 1px solid var(--border-soft); }
+
+.post__body td { color: var(--fg-muted); }
+.post__body td code { white-space: nowrap; }
+
+.post__body caption {
+  caption-side: bottom;
+  padding-top: .75rem;
+  text-align: left;
+  font-size: .82rem;
+  color: var(--fg-faint);
+}
+
+/* Heading anchors generated by `insert_anchor_links` */
+.post__body h1 a, .post__body h2 a, .post__body h3 a, .post__body h4 a {
+  color: inherit;
+  border: 0;
+}
+.post__body h2 a:hover, .post__body h3 a:hover, .post__body h4 a:hover { color: var(--accent); }
+.post__body h1 a::after, .post__body h2 a::after,
+.post__body h3 a::after, .post__body h4 a::after {
+  content: " #";
+  color: var(--fg-faint);
+  font-weight: 400;
+  opacity: 0;
+  transition: opacity .15s ease;
+}
+.post__body :is(h1, h2, h3, h4):hover a::after { opacity: 1; }
+
+/* ── Footnotes ───────────────────────────────────────── */
+/* Zola emits <sup class="footnote-reference"> inline, and collects the bodies
+   into <section class="footnotes"><ol class="footnotes-list"> at the end. */
+.post__body .footnote-reference {
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  line-height: 1;
+}
+.post__body .footnote-reference a {
+  color: var(--fg-faint);
+  border: 0;
+  padding: 0 .1em;
+}
+.post__body .footnote-reference a:hover { color: var(--accent); border: 0; }
+
+.post__body .footnotes {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: .88rem;
+  color: var(--fg-muted);
+}
+.post__body .footnotes-list {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+.post__body .footnotes-list li + li { margin-top: .7rem; }
+.post__body .footnotes-list li::marker {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--fg-faint);
+}
+.post__body .footnotes-list p { margin: 0; }
+
+/* The ↩ backlink to the reference */
+.post__body .footnotes-list a[href*="#fr-"] {
+  border: 0;
+  margin-left: .4em;
+  color: var(--fg-faint);
+}
+.post__body .footnotes-list a[href*="#fr-"]:hover { color: var(--accent); border: 0; }
+
+/* Jump targets must clear the sticky header, or the thing you jumped to
+   lands underneath it. Applies to footnotes and to heading anchors. */
+.post__body [id^="fn-"],
+.post__body [id^="fr-"],
+.post__body :is(h1, h2, h3, h4)[id] { scroll-margin-top: 5.5rem; }
+
+/* ── Footer ──────────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+  position: relative;
+  z-index: 1;
+}
+.site-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-block: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--fg-faint);
+}

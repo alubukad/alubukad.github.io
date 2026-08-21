@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} &middot; {{ config.title }}{% endblock %}
+{% block description %}{{ page.description | default(value=config.description) }}{% endblock %}
+
+{% block content %}
+{% set langs = page.taxonomies.lang | default(value=[]) %}
+<article class="post" {% if langs %}lang="{{ langs[0] }}"{% endif %}>
+  <h1>{{ page.title }}</h1>
+  <div class="post__meta">
+    {% if page.date %}<time datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>{% endif %}
+    {% if page.reading_time %}<span>{{ page.reading_time }} min read</span>{% endif %}
+    {% if langs and langs[0] != config.default_language %}
+    <a href="{{ get_taxonomy_url(kind="lang", name=langs[0]) | safe }}">[{{ langs[0] }}]</a>
+    {% endif %}
+    {% if page.taxonomies.tags %}<span>{% for tag in page.taxonomies.tags %}#{{ tag }}{% if not loop.last %} {% endif %}{% endfor %}</span>{% endif %}
+  </div>
+  <div class="post__body">{{ page.content | safe }}</div>
+</article>
+{% endblock %}

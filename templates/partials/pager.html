@@ -1,0 +1,21 @@
+{# Renders nothing unless there is more than one page, so it costs no space
+   until a list actually outgrows one screen. #}
+{% if paginator is defined and paginator.number_pagers > 1 %}
+<nav class="pager" aria-label="Pagination">
+  {% if paginator.previous %}
+  <a class="pager__link" href="{{ paginator.previous | safe }}" rel="prev">prev</a>
+  {% else %}
+  <span class="pager__link pager__link--off">prev</span>
+  {% endif %}
+
+  <span class="pager__count">
+    {% if paginator.current_index < 10 %}0{% endif %}{{ paginator.current_index }}<span class="pager__sep">/</span>{% if paginator.number_pagers < 10 %}0{% endif %}{{ paginator.number_pagers }}
+  </span>
+
+  {% if paginator.next %}
+  <a class="pager__link" href="{{ paginator.next | safe }}" rel="next">next</a>
+  {% else %}
+  <span class="pager__link pager__link--off">next</span>
+  {% endif %}
+</nav>
+{% endif %}

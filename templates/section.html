@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% include "components/post_item.html" %}
+
+{% block title %}{{ section.title }} &middot; {{ config.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ section.title }}</h1>
+{% if section.content %}<div class="post__body">{{ section.content | safe }}</div>{% endif %}
+
+{% if paginator is defined %}{% set rows = paginator.pages %}{% else %}{% set rows = section.pages %}{% endif %}
+<ul class="post-list">
+  {% for page in rows %}{{ <PostItem page={page} default_lang={config.default_language} /> }}{% endfor %}
+</ul>
+{% include "partials/pager.html" %}
+{% endblock %}

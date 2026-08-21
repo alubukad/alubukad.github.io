@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% include "components/post_item.html" %}
+
+{% block title %}{% if taxonomy.name == "lang" %}{{ term.name }}{% else %}#{{ term.name }}{% endif %} &middot; {{ config.title }}{% endblock %}
+
+{% block content %}
+{% if taxonomy.name == "lang" %}
+<h1>Posts in <span lang="{{ term.name }}">{{ term.name }}</span></h1>
+{% else %}
+<h1>#{{ term.name }}</h1>
+{% endif %}
+
+{# Use the paginated slice when pagination is on, the full list when it is not,
+   so this template stays correct either way. #}
+{% if paginator is defined %}{% set rows = paginator.pages %}{% else %}{% set rows = term.pages %}{% endif %}
+<ul class="post-list">
+  {% for page in rows %}{{ <PostItem page={page} default_lang={config.default_language} /> }}{% endfor %}
+</ul>
+{% include "partials/pager.html" %}
+{% endblock %}

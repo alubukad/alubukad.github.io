@@ -1,0 +1,44 @@
+base_url = "https://oezden.dev"
+title = "oezden.dev"
+author = "Cem Özden"
+description = "Notes on software, systems, and the occasional yak shave."
+default_language = "en"
+
+compile_sass = true
+build_search_index = true
+generate_feeds = true
+feed_filenames = ["feed.xml"]
+
+taxonomies = [
+  { name = "tags", feed = true, paginate_by = 20 },
+  # Only non-default-language posts declare this, so `/lang/de/` exists while
+  # English stays the unmarked default. Nothing to add to an English post.
+  { name = "lang", feed = true, paginate_by = 20 },
+]
+
+[markdown]
+smart_punctuation = true
+bottom_footnotes = true
+insert_anchor_links = "heading"
+
+[markdown.highlighting]
+style = "class"
+theme = "ayu-dark"
+
+[extra]
+author = "Cem Özden"
+role = "Software Engineer"
+brand = "oezden.dev"
+prompt_user = "cem"
+prompt_host = "oezden"
+
+# `match` is the path prefix used to mark the link as the current page
+nav = [
+  { name = "blog", url = "@/blog/_index.md", match = "/blog" },
+  { name = "about", url = "@/about.md", match = "/about" },
+]
+
+socials = [
+  { name = "GitHub", icon = "github", url = "https://github.com/alubukad" },
+  { name = "X", icon = "x", url = "https://x.com/alubukad" },
+]

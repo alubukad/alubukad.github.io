@@ -1,0 +1,25 @@
+{% component PostItem(page, default_lang="en") %}
+{% set langs = page.taxonomies.lang | default(value=[]) %}
+<li class="post-item">
+  <div class="post-item__head">
+    {% if langs and langs[0] != default_lang %}
+    <a class="post-item__lang" href="{{ get_taxonomy_url(kind="lang", name=langs[0]) | safe }}" title="Posts in {{ langs[0] }}">[{{ langs[0] }}]</a>
+    {% endif %}
+    <a class="post-item__title" href="{{ page.permalink | safe }}" {% if langs %}lang="{{ langs[0] }}"{% endif %}>{{ page.title }}</a>
+    {% if page.date %}<time class="post-item__date" datetime="{{ page.date }}">{{ page.date | date(format="%Y-%m-%d") }}</time>{% endif %}
+  </div>
+  {% if page.description %}
+  <p class="post-item__summary" {% if langs %}lang="{{ langs[0] }}"{% endif %}>{{ page.description }}</p>
+  {% elif page.summary %}
+  <p class="post-item__summary" {% if langs %}lang="{{ langs[0] }}"{% endif %}>{{ page.summary | striptags | truncate(length=160) }}</p>
+  {% endif %}
+  {% set tags = page.taxonomies.tags | default(value=[]) %}
+  {% if tags %}
+  <div class="tag-row">
+    {% for tag in tags %}
+    <a class="tag" href="{{ get_taxonomy_url(kind="tags", name=tag) | safe }}">#{{ tag }}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
+</li>
+{% endcomponent %}

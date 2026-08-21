@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% include "components/post_item.html" %}
+
+{% block content %}
+<section class="hero">
+  <p class="term-line">
+    <span class="term-prompt">{{ config.extra.prompt_user }}@{{ config.extra.prompt_host }}<span class="term-prompt__sep">:~$</span></span>
+    <span class="term-cmd">cat about.md</span>
+  </p>
+  <div class="term-output">{{ section.content | safe }}</div>
+</section>
+
+{% set blog = get_section(path="blog/_index.md") %}
+{% if blog.pages %}
+<h2 class="section-label">Latest posts</h2>
+<ul class="post-list">
+  {% for page in blog.pages[:5] %}{{ <PostItem page={page} default_lang={config.default_language} /> }}{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

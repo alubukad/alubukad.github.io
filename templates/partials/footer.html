@@ -1,0 +1,6 @@
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <span>&copy; {{ now() | date(format='%Y') }} {{ config.extra.author | default(value=config.title) }}</span>
+    <span>built with <a href="https://www.getzola.org/">zola</a> &middot; <a href="{{ get_url(path='feed.xml') | safe }}">rss</a></span>
+  </div>
+</footer>

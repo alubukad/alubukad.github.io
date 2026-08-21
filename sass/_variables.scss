@@ -1,0 +1,38 @@
+// Monochrome — near-black base, everything else is a step on the grey ramp.
+// One accent slot is defined but points at plain white; give it a real hue
+// here if the site ever wants one, and nothing else needs to change.
+:root {
+  --ink-000: #08080a;  // deepest — code blocks, footer wells
+  --ink-050: #0c0c0e;  // page background
+  --ink-100: #121215;  // elevated surfaces
+  --ink-200: #17171b;  // hairlines
+  --ink-300: #232329;  // borders, dividers
+  --ink-400: #34343c;  // grid dots, selection
+  --ink-500: #4d4d57;  // faintest text
+  --ink-600: #6e6e7a;  // dim text
+  --ink-700: #9a9aa6;  // muted text
+  --ink-800: #c8c8d0;  // secondary text
+  --ink-900: #ececf0;  // primary text
+  --ink-950: #ffffff;  // emphasis
+
+  // Semantic roles — reskin the whole site from here
+  --bg:          var(--ink-050);
+  --bg-elevated: var(--ink-100);
+  --bg-deep:     var(--ink-000);
+  --fg:          var(--ink-900);
+  --fg-muted:    var(--ink-700);
+  --fg-faint:    var(--ink-500);
+  --accent:      var(--ink-950);
+  --accent-dim:  var(--ink-800);
+  --border:      var(--ink-300);
+  --border-soft: var(--ink-200);
+  --grid-dot:    var(--ink-400);
+  --selection:   var(--ink-400);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+
+  --measure: 68ch;
+  --shell-max: 1100px;
+  --radius: 6px;
+}
