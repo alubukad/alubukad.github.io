@@ -1,5 +1,5 @@
 base_url = "https://oezden.dev"
-title = "oezden.dev"
+title = "Cem Özden (Oezden).dev"
 author = "Cem Özden"
 description = "Notes on software, systems, and the occasional yak shave."
 default_language = "en"
@@ -31,6 +31,10 @@ role = "Software Engineer"
 brand = "oezden.dev"
 prompt_user = "cem"
 prompt_host = "oezden"
+
+# A post shows a table of contents once it has this many headings; below it the
+# list is longer than the post. Override per post with `[extra] toc = true|false`.
+toc_min_headings = 2
 
 # `match` is the path prefix used to mark the link as the current page
 nav = [

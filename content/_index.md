@@ -1,7 +1,10 @@
 +++
-title = "oezden.dev"
+title = "Cem Özden (Oezden).dev"
 template = "index.html"
 +++
 
-I build backend systems and write about the parts that were harder than they
-looked. Mostly Rust, Go, distributed systems, and developer tooling.
+### Hi there!
+
+I'm a Software Engineer who's currently located in Amsterdam, NL.
+
+In this website, you can find more information about me and my thoughts on various topics such as Software Engineering, AI, travel as well as my personal experiences in life.

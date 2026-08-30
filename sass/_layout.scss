@@ -139,6 +139,51 @@ a.tag:hover { color: var(--ink-950); background: var(--ink-300); border-color: v
 }
 .post__body img { max-width: 100%; border-radius: var(--radius); }
 
+/* ── Table of contents ───────────────────────────────── */
+/* Sits between the meta row and the body, inside the same text column, so it
+   reads as part of the post's head rather than a widget bolted to the side. */
+.toc {
+  margin: 0 0 2.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: .84rem;
+  line-height: 1.5;
+}
+
+.toc__label {
+  margin: 0 0 .6rem;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--fg-faint);
+}
+
+/* Ordered lists carry the numbering, so the section number a reader sees in
+   the contents is the same one they can count down to in the post. */
+.toc__list {
+  margin: 0;
+  padding-left: 1.6rem;
+  list-style: decimal;
+}
+.toc__list--sub {
+  list-style: lower-alpha;
+  margin-top: .3rem;
+  padding-left: 1.4rem;
+}
+
+.toc__item { margin: 0; }
+.toc__item + .toc__item { margin-top: .35rem; }
+.toc__item::marker { color: var(--fg-faint); font-size: .78rem; }
+
+.toc__link {
+  color: var(--fg-muted);
+  border: 0;
+}
+.toc__link:hover { color: var(--accent); border: 0; }
+
 /* ── Tables ──────────────────────────────────────────── */
 /* Markdown emits a bare <table> with no wrapper element, so the table itself
    has to be the scroll container. `display: block` keeps the internal table

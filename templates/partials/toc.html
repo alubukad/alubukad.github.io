@@ -1,0 +1,41 @@
+{# Table of contents for a single post.
+   Zola builds `page.toc` from the document's headings (nested by level), and
+   `insert_anchor_links = "heading"` in zola.toml gives every heading the `id`
+   these links point at — nothing has to be written by hand in a post.
+
+   Rendered only when a post has enough headings to be worth navigating; a
+   two-heading post gets a list as long as the post itself. The threshold is
+   `extra.toc_min_headings`, and a post can force the answer either way with
+   `[extra] toc = true|false` in its front matter. #}
+{% set min = config.extra.toc_min_headings | default(value=3) %}
+
+{# `page.toc | length` counts top-level entries only, so the children have to
+   be added in to get the real heading count. #}
+{% set_global toc_count = page.toc | length %}
+{% for h in page.toc %}
+  {% set_global toc_count = toc_count + (h.children | length) %}
+{% endfor %}
+
+{% set show = page.extra.toc | default(value=toc_count >= min) %}
+
+{% if show and toc_count > 0 %}
+<nav class="toc" aria-labelledby="toc-label">
+  <p class="toc__label" id="toc-label">Contents</p>
+  <ol class="toc__list">
+    {% for h in page.toc %}
+    <li class="toc__item">
+      <a class="toc__link" href="#{{ h.id }}">{{ h.title }}</a>
+      {% if h.children %}
+      <ol class="toc__list toc__list--sub">
+        {% for c in h.children %}
+        <li class="toc__item">
+          <a class="toc__link" href="#{{ c.id }}">{{ c.title }}</a>
+        </li>
+        {% endfor %}
+      </ol>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+</nav>
+{% endif %}
