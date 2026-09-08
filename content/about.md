@@ -14,7 +14,7 @@ I've been mainly involved in developing backend solutions, distributed systems i
 
 Outside of the IT world, I'm a big fan of Formula 1 and have been interested in doing podcasts about technical side of F1. Unfortunately, I don't have the time and energy to pursue doing podcasting anymore. (Maybe one day!)
 
-I currently live in `Amsterdam, The Netherlands` and working for a large financial institution in Utrecht. Previously, I lived in Copenhagen, Kraków and Budapest/Debrecen and originally from Izmir/Turkey. I wrote a blog post about my experience living abroad. You can find it [here](/blog/what-living-abroad-taught-me).
+I currently live in `Amsterdam, The Netherlands` and working for a large financial institution in Utrecht. Previously, I lived in Copenhagen, Kraków and Budapest/Debrecen and originally from Izmir/Turkey. I wrote a blog post about my experience living abroad. You can find it [here](/blog/what-living-in-europe-taught-me).
 
 If you have any questions or want to get in touch with me, you can contact me via
 
