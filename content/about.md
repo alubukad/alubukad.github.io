@@ -2,6 +2,9 @@
 title = "About"
 path = "about"
 template = "page.html"
+
+[extra]
+hide_reading_time = true
 +++
 
 Hi!
